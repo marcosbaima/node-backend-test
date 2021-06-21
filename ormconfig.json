@@ -1,0 +1,18 @@
+
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port":3306,
+  "username": "raks",
+  "password": "docker",
+  "database":"node_test_mysql",
+  "entities": ["./src/modules/**/infra/typeorm/models/*{.js,.ts}"],
+  "migrations":[
+    "./src/shared/typeorm/migrations/*{.ts,.js}"
+  ],
+  "cli":{
+    "migrationsDir":"./src/shared/typeorm/migrations"
+  }
+
+
+}
