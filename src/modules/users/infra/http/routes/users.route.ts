@@ -14,7 +14,7 @@ const UserController= new userController();
 
 
   // Update Users
-  usersRouter.get('/',ensureAuthenticaated, UserController.update);
+  usersRouter.put('/',ensureAuthenticaated, UserController.update);
 
 
 

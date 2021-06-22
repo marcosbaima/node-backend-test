@@ -4,7 +4,7 @@ import { container } from 'tsyringe';
 
 import CreateUserService from '@modules/users/service/CreateUserService'
 import ShowProfileService from '@modules/users/service/ShowProfileService';
-import UpdateProfileService from '@modules/users/service/UpdateProfileService'
+import UpdateProfileService from '@modules/users/service/UpdateUserService'
 import users from '@modules/users/infra/typeorm/models/Users';
 
 export default class UsersController{
@@ -67,6 +67,7 @@ export default class UsersController{
 
   public async update(request: Request, response: Response): Promise<Response>{
     const user_id = request.user.id;
+          
     const {
       name,
       password,
