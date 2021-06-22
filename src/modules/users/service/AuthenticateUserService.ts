@@ -36,29 +36,38 @@ class AuthenticateUserService {
     
     const user = await getRepository(User).find({where: {email:email}});
     
-    const Users = JSON.parse(JSON.stringify(user))
+    
+    if(user.length){
+        
+        const Users = JSON.parse(JSON.stringify(user[0]));
 
-    if (!Users[0].id) {
+        if (!Users.id) {
+            throw new AppError('Incorrect email/password combination.', 401);
+        }
+
+        const passwordMatched = await this.hashProvider.compareHash(password, Users.password);
+
+        if (!passwordMatched) {
+            throw new AppError('Incorrect email/password combination.', 401);
+        }
+        delete Users.password;
+
+        const { secret, expiresIn } = authConfig.jwt;
+
+        const token = sign({}, secret, {
+            subject: Users.id,
+            expiresIn,
+        });
+        return {
+            user,
+            token,
+        };
+
+    }else{
       throw new AppError('Incorrect email/password combination.', 401);
     }
-
-    const passwordMatched = await this.hashProvider.compareHash(password, Users[0].password);
     
-    if (!passwordMatched) {
-      throw new AppError('Incorrect email/password combination.', 401);
-    }
     
-
-    const { secret, expiresIn } = authConfig.jwt;
-    
-    const token = sign({}, secret, {
-      subject: Users[0].id,
-      expiresIn,
-    });
-    return {
-        user,
-        token,
-    };
   }
 }
 
