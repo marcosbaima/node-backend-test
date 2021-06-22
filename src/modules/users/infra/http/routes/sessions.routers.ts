@@ -1,10 +1,9 @@
 import { Router } from 'express';
-import SessionController from '@modules/users/infra/http/controllers/AuthenticateController'
+import SessionController from '@modules/users/infra/http/controllers/SessionController'
+
 
 const sessionsRouter = Router();
 const sessionController = new SessionController()
-
-//Authentication
 
 sessionsRouter.post('/',sessionController.update)
 

@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
 import { container } from 'tsyringe';
-
-import CreateUserService from '@modules/users/service/CreateUserService'
+import { getRepository } from 'typeorm'; 
+import CreateUserService from '@modules/users/service/CreateUserService';
+import UpdateProfileService from '@modules/users/service/UpdateProfileService';
 import ShowProfileService from '@modules/users/service/ShowProfileService';
-import UpdateProfileService from '@modules/users/service/UpdateUserService'
 import users from '@modules/users/infra/typeorm/models/Users';
 
 export default class UsersController{
@@ -21,13 +20,12 @@ export default class UsersController{
       description,
       email,
     })
-    
+
     // @ts-ignore
-    delete user.password;
+    delete  user.password;
 
     return response.json(user)
   }
-
   public async show(request:Request,response:Response): Promise<any>{
     const user_id = request.query.user_id;
     const page =request.query.page;
@@ -90,5 +88,4 @@ export default class UsersController{
     })
 
     return response.json(user)
-  }
-}
+  }}

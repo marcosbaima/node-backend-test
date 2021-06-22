@@ -21,12 +21,12 @@ class UserRepository implements IUsersRepository {
     const findUsers = await this.ormRepository.findOne({
       where: { email },
     });
-
+    //console.log(findUsers)
     return findUsers;
   }
 
-  public async create({ name,  password, dob, address, description,email}:IcreateUserDTO):Promise<User>{
-    const user=this.ormRepository.create({name,  password, dob, address, description,email});
+  public async create({ name,email,password,address,description,dob}:IcreateUserDTO):Promise<User>{
+    const user=this.ormRepository.create({name,email,password,address,description,dob});
 
     await this.ormRepository.save(user);
 

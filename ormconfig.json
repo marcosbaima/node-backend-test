@@ -6,7 +6,7 @@
   "username": "raks",
   "password": "docker",
   "database":"node_test_mysql",
-  "entities": ["./src/modules/**/infra/typeorm/models/*{.js,.ts}"],
+  "entities": ["./src/modules/**/infra/typeorm/models/*{.ts,.js}"],
   "migrations":[
     "./src/shared/typeorm/migrations/*{.ts,.js}"
   ],

@@ -4,9 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  
 } from 'typeorm';
-
 
 @Entity('users')
 class User {
@@ -19,19 +17,17 @@ class User {
   @Column()
   password: string;
 
-  
   @Column()
   dob: Date;
-
-  @Column()
-  address: string;
 
   @Column()
   description: string;
 
   @Column()
-  email: string;
+  address: string;
 
+  @Column()
+  email: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -39,6 +35,6 @@ class User {
   @UpdateDateColumn()
   updated_at: Date;
 
-  }
+}
 
 export default User;
