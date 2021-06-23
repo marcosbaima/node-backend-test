@@ -4,6 +4,7 @@ import User from '@modules/users/infra/typeorm/models/Users';
 import IUsersRepository from '../Repositories/IUsersRepository';
 import { injectable, inject} from 'tsyringe';
 import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
+
 interface Request {
   user_id:string;
   name: string;
@@ -32,8 +33,9 @@ class UpdateProfile {
       throw new AppError('User not found');
     }
 
-    const userWithUpdateEmail=  await this.usersRepository.findByEmail(email)
+    const userWithUpdateEmail=  await this.usersRepository.findById(user_id)
 
+    
     if (userWithUpdateEmail && userWithUpdateEmail.id != user_id){
       throw new AppError('E-mail already in use')
     }

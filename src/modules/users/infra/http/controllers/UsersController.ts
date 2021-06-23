@@ -14,7 +14,6 @@ export default class UsersController{
 
     const dtNasc:any = moment(dob).format('YYYY-MM-DD');
 
-    console.log(dtNasc)
     const createUser = container.resolve(CreateUserService);
 
     const user = await createUser.execute({
@@ -32,7 +31,9 @@ export default class UsersController{
     return response.json(user)
   }
   public async show(request:Request,response:Response): Promise<any>{
+    
     const user_id = request.query.user_id;
+    
     const page =request.query.page;
 
     if(user_id){
@@ -73,6 +74,7 @@ export default class UsersController{
           
     const {
       name,
+      old_password,
       password,
       dob,
       address,
@@ -80,13 +82,18 @@ export default class UsersController{
       email
     } = request.body;
 
+    //console.log(request.body);
+
+    const dtNasc:any = moment(dob).format('YYYY-MM-DD');
+
     const updateProfile = container.resolve(UpdateProfileService);
 
     const user = await updateProfile.execute({
       user_id,
       name,
+      old_password,
       password,
-      dob,
+      dob:dtNasc,
       address,
       description,
       email,
@@ -97,13 +104,12 @@ export default class UsersController{
   public async delete(request:Request,response:Response):Promise<Response>{
     
     const user_id:any = request.query.user_id;
-    //console.log(user_id)
-
+    
     const deletaUser = container.resolve(DeleteUserService);
 
     const destroyUser= await deletaUser.execute({user_id});
 
-    return response.status(201).json({message:"user exclude with success"})
+    return response.status(201).json({message:"user delete with success"})
 
   }
 }

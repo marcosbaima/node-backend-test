@@ -22,20 +22,27 @@ const UserController= new userController();
   }),UserController.create);
 
  // List users
- usersRouter.get('/',ensureAuthenticaated, UserController.show);
+ usersRouter.get('/',ensureAuthenticaated, ensureAuthenticaated, celebrate({
+  [Segments.QUERY]: Joi.object().keys({
+    user_id:Joi.string().optional(),
+   
+  }),
+}),UserController.show);
 
 
  // Update Users
  usersRouter.put('/',ensureAuthenticaated, celebrate({
     [Segments.BODY]: Joi.object().keys({
       name:Joi.string(),
+      description:Joi.string().allow(null),
       email:Joi.string().email(),
       address:Joi.string().allow(null),
-      dob:Joi.date().required(),
+      dob:Joi.date().optional(), 
       old_password:Joi.string(),
       password: Joi.when('old_password', {
         is: Joi.exist(),
         then: Joi.required(),
+        
       }),
       password_confirmation: Joi.when('password', {
         is: Joi.exist(),
@@ -45,6 +52,11 @@ const UserController= new userController();
   }),UserController.update);
 
   // Delete users
- usersRouter.delete('/',ensureAuthenticaated, UserController.delete);
+ usersRouter.delete('/',ensureAuthenticaated,celebrate({
+  [Segments.QUERY]: Joi.object().keys({
+    user_id:Joi.string().required(),
+   
+  }),
+}), UserController.delete);
 
 export default usersRouter;
