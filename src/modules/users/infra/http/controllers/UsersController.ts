@@ -1,21 +1,26 @@
 import { Request, Response } from 'express';
+import  moment from 'moment'
 import { container } from 'tsyringe';
 import { getRepository } from 'typeorm'; 
 import CreateUserService from '@modules/users/service/CreateUserService';
 import UpdateProfileService from '@modules/users/service/UpdateProfileService';
 import ShowProfileService from '@modules/users/service/ShowProfileService';
+import DeleteUserService from '@modules/users/service/DeleteUserService';
 import users from '@modules/users/infra/typeorm/models/Users';
 
 export default class UsersController{
   public async create(request: Request, response: Response): Promise<Response>{
     const { name,  password, dob, address, description,email} = request.body;
 
+    const dtNasc:any = moment(dob).format('YYYY-MM-DD');
+
+    console.log(dtNasc)
     const createUser = container.resolve(CreateUserService);
 
     const user = await createUser.execute({
       name,
       password,
-      dob,
+      dob:dtNasc,
       address,
       description,
       email,
@@ -88,4 +93,17 @@ export default class UsersController{
     })
 
     return response.json(user)
-  }}
+  }
+  public async delete(request:Request,response:Response):Promise<Response>{
+    
+    const user_id:any = request.query.user_id;
+    //console.log(user_id)
+
+    const deletaUser = container.resolve(DeleteUserService);
+
+    const destroyUser= await deletaUser.execute({user_id});
+
+    return response.status(201).json({message:"user exclude with success"})
+
+  }
+}

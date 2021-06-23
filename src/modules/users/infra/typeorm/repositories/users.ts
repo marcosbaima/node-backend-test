@@ -3,6 +3,7 @@ import IUsersRepository from '@modules/users/Repositories/IUsersRepository';
 import  IcreateUserDTO from '@modules/users/dtos/ICreateUsersDTO';
 import User from '@modules/users/infra/typeorm/models/Users';
 
+
 class UserRepository implements IUsersRepository {
   private ormRepository:Repository<User>;
   constructor(){
@@ -29,6 +30,14 @@ class UserRepository implements IUsersRepository {
     const user=this.ormRepository.create({name,email,password,address,description,dob});
 
     await this.ormRepository.save(user);
+
+    return user;
+  }
+  public async exclude(user_id:string):Promise<any>{
+    
+    const user=this.ormRepository.delete(user_id);
+
+    //await this.ormRepository.save(user);
 
     return user;
   }
