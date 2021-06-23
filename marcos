@@ -1,0 +1,35 @@
+import AppError from '@shared/errors/AppError';
+import AuthenticateUserService from '@modules/users/service/AuthenticateUserService';
+import FakeUsersRepository from '../Repositories/FakeUsersRepository';
+import CreateUserService from '@modules/users/service/CreateUserService';
+import FakeHashProvider from '@modules/users/providers/HashProvider/fake/FakeHashProvider';
+
+describe('AuthenticateUser', () => {
+    it('should be able to authenticate', async () => {
+        const fakeUsersRepository = new FakeUsersRepository();
+        const fakeHashProvider = new FakeHashProvider();
+    
+        const createUser = new CreateUserService(fakeUsersRepository,fakeHashProvider);
+    
+        const authenticateUser = new AuthenticateUserService(fakeUsersRepositor);
+    
+        const user = await createUser.execute({
+            name:"marcos baima",
+            email:"test@test.com.br",
+            password:"123456",
+            address:"rua da acacias",
+            description:"Test Back-end",
+            dob:new Date(),
+            })
+        });
+    
+    
+        const response = await authenticateUser({
+          email: 'test@test.com.br',
+          password: '123456',
+        });
+    
+        expect(response).toHaveProperty('token');
+        expect(response.user).toEqual(user);
+  });
+	
