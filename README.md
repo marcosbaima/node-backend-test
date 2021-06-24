@@ -2,7 +2,7 @@
 
 > NodeJs CRUD API RESTful 
 
-This project is a test developement in NODEJS (CRUD) API RESTful with TYPESCRIPT, EXPRESS, JEST, TYPEORM, MYSQL, DOCKER CONTAINER, SOLID   
+-This project is a test developement in NODEJS (CRUD) API RESTful with TYPESCRIPT, EXPRESS, JEST, TYPEORM, MYSQL, DOCKER CONTAINER, SOLID   
 
 ![]()
 
@@ -10,19 +10,19 @@ This project is a test developement in NODEJS (CRUD) API RESTful with TYPESCRIPT
 
 OS X & Linux:
 
-yarn 
+>yarn 
 
 
 Windows:
 
-yarn
+>yarn
 
 
 ## Usage example
 
 For more examples and case usage, please refer to the.
 
-*********Documentation*****************
+>Documentation
 
 https://documenter.getpostman.com/view/5647823/TzecCjqc
 
@@ -31,15 +31,15 @@ https://documenter.getpostman.com/view/5647823/TzecCjqc
 
 Docker
 
-docker start <id container or name>
+>docker start <id container or name>
 
 TypeORM
 
-yarn typeormmigration:run
+>yarn typeormmigration:run
 
 Start SERVER
 
-yarn dev:server
+>yarn dev:server
 
 ## Release History
 List of steps work development in modules. 
