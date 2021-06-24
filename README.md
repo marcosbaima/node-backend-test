@@ -1,8 +1,8 @@
 # Test Backend - Raks
 
-> NodeJs API Restfull Test
+> NodeJs CRUD API RESTful 
 
-This project is a test developement in NODEJS Restfull with TYPESCRIPT, EXPRESS, JEST, TYPEORM, MYSQL, DOCKER CONTAINER, SOLID   
+This project is a test developement in NODEJS (CRUD) API RESTful with TYPESCRIPT, EXPRESS, JEST, TYPEORM, MYSQL, DOCKER CONTAINER, SOLID   
 
 ![]()
 
@@ -10,33 +10,35 @@ This project is a test developement in NODEJS Restfull with TYPESCRIPT, EXPRESS,
 
 OS X & Linux:
 
-sh
 yarn 
 
 
 Windows:
 
-sh
 yarn
 
 
 ## Usage example
 
-For more examples and usage, please refer to the.
+For more examples and case usage, please refer to the.
+
+*********Documentation*****************
+
+https://documenter.getpostman.com/view/5647823/TzecCjqc
 
 
 ## Development setup
 
 Docker
-sh
-DOCKER start id container or name
+
+docker start <id container or name>
 
 TypeORM
-sh
+
 yarn typeormmigration:run
 
 Start SERVER
-sh
+
 yarn dev:server
 
 ## Release History
@@ -57,7 +59,7 @@ List of steps work development in modules.
 
 ## Meta
 
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
+Marcos Baima – [linkedin](https://www.linkedin.com/in/marcos-baima-4312a739/) – marcosbaimace@gmail.com
 
 Distributed under the XYZ license. See ``LICENSE`` for more information.
 
