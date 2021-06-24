@@ -35,11 +35,15 @@ Docker
 
 TypeORM
 
->yarn typeormmigration:run
+>yarn typeorm migration:run
 
 Start SERVER
 
 >yarn dev:server
+
+Test
+
+>yarn test
 
 ## Release History
 List of steps work development in modules. 
